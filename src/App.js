@@ -8,7 +8,7 @@ import Info from "./panels/Info";
 import Edit from './panels/Edit'
 
 const App = () => {
-  const [activePanel, setActivePanel] = useState("info");
+  const [activePanel, setActivePanel] = useState("home");
   const [image, setImage] = useState(null);
   const [title, setTitle] = useState("");
   const [audio, setAudio] = useState(null);
