@@ -1,47 +1,74 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import Panel from '@vkontakte/vkui/dist/components/Panel/Panel';
-import PanelHeader from '@vkontakte/vkui/dist/components/PanelHeader/PanelHeader';
-import Button from '@vkontakte/vkui/dist/components/Button/Button';
-import Group from '@vkontakte/vkui/dist/components/Group/Group';
-import Cell from '@vkontakte/vkui/dist/components/Cell/Cell';
-import Div from '@vkontakte/vkui/dist/components/Div/Div';
-import Avatar from '@vkontakte/vkui/dist/components/Avatar/Avatar';
+import React from "react";
+import PropTypes from "prop-types";
+import { Panel, PanelHeader, Div, Text, Button } from "@vkontakte/vkui";
+import Icon56AddCircleOutline from "@vkontakte/icons/dist/56/add_circle_outline";
 
-const Home = ({ id, go, fetchedUser }) => (
-	<Panel id={id}>
-		<PanelHeader>Example</PanelHeader>
-		{fetchedUser &&
-		<Group title="User Data Fetched with VK Bridge">
-			<Cell
-				before={fetchedUser.photo_200 ? <Avatar src={fetchedUser.photo_200}/> : null}
-				description={fetchedUser.city && fetchedUser.city.title ? fetchedUser.city.title : ''}
-			>
-				{`${fetchedUser.first_name} ${fetchedUser.last_name}`}
-			</Cell>
-		</Group>}
-
-		<Group title="Navigation Example">
-			<Div>
-				<Button size="xl" level="2" onClick={go} data-to="persik">
-					Show me the Persik, please
-				</Button>
-			</Div>
-		</Group>
-	</Panel>
-);
+const Home = ({ id, onClick }) => {
+  return (
+    <Panel id={id}>
+      <PanelHeader>Подкасты</PanelHeader>
+      <Div
+        style={{
+          position: "absolute",
+          bottom: 0,
+          left: 0,
+          right: 0,
+          top: 0,
+          display: "flex",
+          justifyContent: "center",
+          flexDirection: "column",
+          alignItems: "center",
+        }}
+      >
+        <Div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+          }}
+        >
+          <Icon56AddCircleOutline
+            style={{
+              color: "#99A2AD",
+            }}
+          />
+          <Text
+            style={{
+              marginTop: 16,
+              fontSize: 20,
+              letterSpacing: 0.38,
+              fontWeight: 600,
+            }}
+          >
+            Добавьте первый подкаст
+          </Text>
+          <Text
+            style={{
+              fontStyle: "normal",
+              fontWeight: "normal",
+              fontSize: 16,
+              letterSpacing: -0.32,
+              color: "#818C99",
+              marginLeft: 32,
+              marginRight: 32,
+              marginTop: 8,
+            }}
+          >
+            Добавляйте, редактируйте и делитесь подкастами вашего сообщества.
+          </Text>
+          <Button onClick={onClick} style={{
+			  marginTop: 24,
+			  width: 166,
+		  }} size="m">Добавить подкаст</Button>
+        </Div>
+      </Div>
+    </Panel>
+  );
+};
 
 Home.propTypes = {
-	id: PropTypes.string.isRequired,
-	go: PropTypes.func.isRequired,
-	fetchedUser: PropTypes.shape({
-		photo_200: PropTypes.string,
-		first_name: PropTypes.string,
-		last_name: PropTypes.string,
-		city: PropTypes.shape({
-			title: PropTypes.string,
-		}),
-	}),
+  id: PropTypes.string.isRequired,
+  onClick: PropTypes.func.isRequired,
 };
 
 export default Home;
