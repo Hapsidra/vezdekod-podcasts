@@ -1,6 +1,12 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Panel, PanelHeader, Div, Text, Button } from "@vkontakte/vkui";
+import {
+  Panel,
+  PanelHeader,
+  Div,
+  Text,
+  Button,
+} from "@vkontakte/vkui";
 import Icon56AddCircleOutline from "@vkontakte/icons/dist/56/add_circle_outline";
 
 const Home = ({ id, onClick }) => {
@@ -56,10 +62,15 @@ const Home = ({ id, onClick }) => {
           >
             Добавляйте, редактируйте и делитесь подкастами вашего сообщества.
           </Text>
-          <Button onClick={onClick} style={{
-			  marginTop: 24,
-			  width: 166,
-		  }} size="m">Добавить подкаст</Button>
+          <Button
+            onClick={onClick}
+            style={{
+              marginTop: 24,
+            }}
+            size="l"
+          >
+            Добавить подкаст
+          </Button>
         </Div>
       </Div>
     </Panel>
