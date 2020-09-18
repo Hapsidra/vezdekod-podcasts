@@ -5,7 +5,9 @@ import "@vkontakte/vkui/dist/vkui.css";
 
 import Home from "./panels/Home";
 import Info from "./panels/Info";
-import Edit from './panels/Edit'
+import Edit from "./panels/Edit";
+import Check from "./panels/Check";
+import Share from "./panels/Share";
 
 const App = () => {
   const [activePanel, setActivePanel] = useState("home");
@@ -38,35 +40,54 @@ const App = () => {
         id="info"
         onBack={() => {
           setActivePanel("home");
-		}}
-		image={image}
-		title={title}
-		audio={audio}
-		description={description}
-		audioObject={audioObject}
-		audioInfo={audioInfo}
-		setImage={setImage}
-		setTitle={setTitle}
-		setAudio={setAudio}
-		setDescription={setDescription}
-		setAudioObject={setAudioObject}
-		setAudioInfo={setAudioInfo}
-		onEdit={() => {
-			setActivePanel('edit');
-		}}
+        }}
+        image={image}
+        title={title}
+        audio={audio}
+        description={description}
+        audioObject={audioObject}
+        audioInfo={audioInfo}
+        setImage={setImage}
+        setTitle={setTitle}
+        setAudio={setAudio}
+        setDescription={setDescription}
+        setAudioObject={setAudioObject}
+        setAudioInfo={setAudioInfo}
+        onEdit={() => {
+          setActivePanel("edit");
+        }}
+        onNext={() => {
+          setActivePanel("check");
+        }}
       />
       <Edit
-		id="edit"
-		image={image}
-		title={title}
-		audio={audio}
-		description={description}
-		audioObject={audioObject}
-		audioInfo={audioInfo}
+        id="edit"
+        image={image}
+        title={title}
+        audio={audio}
+        description={description}
+        audioObject={audioObject}
+        audioInfo={audioInfo}
         onBack={() => {
           setActivePanel("info");
         }}
       />
+      <Check
+        id="check"
+        image={image}
+        title={title}
+        audio={audio}
+        description={description}
+        audioObject={audioObject}
+        audioInfo={audioInfo}
+        onBack={() => {
+          setActivePanel("info");
+        }}
+        onNext={() => {
+          setActivePanel("share");
+        }}
+      />
+      <Share id="share" onBack={() => setActivePanel("home")} />
     </View>
   );
 };

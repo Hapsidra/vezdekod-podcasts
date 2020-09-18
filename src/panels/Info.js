@@ -19,6 +19,7 @@ import Icon56GalleryOutline from "@vkontakte/icons/dist/56/gallery_outline";
 import "./Info.css";
 import arrowIcon from "../img/arrow.svg";
 import microphone from "../img/microphone.svg";
+import {formatDuration} from '../utils';
 
 const Label = function ({ children, style }) {
   return (
@@ -33,21 +34,6 @@ const Label = function ({ children, style }) {
       {children}
     </Text>
   );
-};
-
-const zeroPrefix = (s) => {
-  s = s + "";
-  if (s.length < 2) {
-    return "0" + s;
-  }
-  return s;
-};
-
-const formatDuration = (seconds) => {
-  seconds = parseInt(Math.round(seconds));
-  const minutes = Math.floor(seconds / 60);
-  seconds = seconds - minutes * 60;
-  return zeroPrefix(minutes) + ":" + zeroPrefix(seconds);
 };
 
 const Info = ({
@@ -66,6 +52,7 @@ const Info = ({
   audioInfo,
   setAudioInfo,
   onEdit,
+  onNext,
 }) => {
   const [imageLoading, setImageLoading] = useState(false);
   const [audioLoading, setAudioLoading] = useState(false);
@@ -401,7 +388,11 @@ const Info = ({
           marginTop: 24,
         }}
       >
-        <Button disabled={audio == null || title.length === 0} size="xl">
+        <Button
+          onClick={onNext}
+          disabled={audio == null || title.length === 0}
+          size="xl"
+        >
           Далее
         </Button>
       </Div>
@@ -413,6 +404,7 @@ Info.propTypes = {
   id: PropTypes.string.isRequired,
   onBack: PropTypes.func.isRequired,
   onEdit: PropTypes.func.isRequired,
+  onNext: PropTypes.func.isRequired,
 };
 
 export default Info;

@@ -6,13 +6,17 @@ import {
   Div,
   Text,
   Button,
+  PanelHeaderBack,
 } from "@vkontakte/vkui";
-import Icon56AddCircleOutline from "@vkontakte/icons/dist/56/add_circle_outline";
+import Icon56CheckCircleOutline from "@vkontakte/icons/dist/56/check_circle_outline";
+import bridge from '@vkontakte/vk-bridge';
 
-const Home = ({ id, onClick }) => {
+const Share = ({ id, onClick, onBack }) => {
   return (
     <Panel id={id}>
-      <PanelHeader>Подкасты</PanelHeader>
+      <PanelHeader left={<PanelHeaderBack onClick={onBack} />}>
+        Подкасты
+      </PanelHeader>
       <Div
         style={{
           position: "absolute",
@@ -33,9 +37,9 @@ const Home = ({ id, onClick }) => {
             alignItems: "center",
           }}
         >
-          <Icon56AddCircleOutline
+          <Icon56CheckCircleOutline
             style={{
-              color: "#99A2AD",
+              color: "#3F8AE0",
             }}
           />
           <Text
@@ -44,10 +48,10 @@ const Home = ({ id, onClick }) => {
               fontSize: 20,
               letterSpacing: 0.38,
               fontWeight: 600,
-			  textAlign: 'center',
+              textAlign: "center",
             }}
           >
-            Добавьте первый подкаст
+            Подкаст добавлен
           </Text>
           <Text
             style={{
@@ -58,20 +62,23 @@ const Home = ({ id, onClick }) => {
               color: "#818C99",
               marginLeft: 32,
               marginRight: 32,
-			  marginTop: 8,
-			  textAlign: 'center',
+              marginTop: 8,
+              textAlign: "center",
             }}
           >
-            Добавляйте, редактируйте и делитесь подкастами вашего сообщества.
+            Раскажите своим подписчикам о новом подкасте, чтобы получить больше
+            слушателей.
           </Text>
           <Button
-            onClick={onClick}
+            onClick={() => {
+                bridge.send("VKWebAppShare", {"link": "https://vk.com/video-460389_160321403"});
+            }}
             style={{
               marginTop: 24,
             }}
             size="l"
           >
-            Добавить подкаст
+            Поделиться подкастом
           </Button>
         </Div>
       </Div>
@@ -79,9 +86,9 @@ const Home = ({ id, onClick }) => {
   );
 };
 
-Home.propTypes = {
+Share.propTypes = {
   id: PropTypes.string.isRequired,
   onClick: PropTypes.func.isRequired,
 };
 
-export default Home;
+export default Share;
