@@ -232,6 +232,7 @@ const Info = ({
                 fontSize: 13,
                 color: "#818C99",
                 letterSpacing: -0.078,
+                textAlign: 'center',
               }}
             >
               Вы можете добавить таймкоды и скорректировать подкаст в режиме
@@ -269,6 +270,7 @@ const Info = ({
                 color: "#818C99",
                 fontSize: 16,
                 marginTop: 8,
+                textAlign: 'center',
               }}
             >
               Выберите готовый аудиофайл из вашего телефона и добавьте его
